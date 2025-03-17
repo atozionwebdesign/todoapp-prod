@@ -1,12 +1,23 @@
+@import "tailwindcss";
+
 :root {
-  --background: #ffffff;
+  --background: var(--gray);
   --foreground: #171717;
+  --lighttaupe: #C9C8CE;
+  --taupe: #84828F;
+  --dimgray: #6A687A;
+  --gray: #536271;
+  --charcoal: #3E4C5E;
+  --darkcharcoal: #252d38;
+  --blue: #2C3D55;
+  --midblue: #384D6C;
+  --lightblue: #466187;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* --background: #0a0a0a;
+    --foreground: #ededed; */
   }
 }
 
@@ -17,22 +28,170 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  /* color: var(--lighttaupe); */
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 100%;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0; */
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+/*********** TEXT ***********/
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1{
+  font-size: 2.5em;
+}
+
+h2{
+  font-size: 1.875em;
+}
+
+p{
+  font-size: 0.875em;
+}
+
+.large{
+  font-size: 1em !important;
+}
+
+.xlarge{
+  font-size: 1.5em !important;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+/*********** IMAGES ***********/
+.svg-inline--fa {
+  margin-right: 10px;
+}
+
+svg {
+  pointer-events: none;
+}
+
+/*********** LEFT-NAV ***********/
+.selected-filter{
+  background-color: var(--lightblue);
+  color: var(--lighttaupe);
+  font-weight:bold;
+  
+}
+
+.filter-div{
+  color: 'var(--darkcharcoal)';
+}
+
+.selected-filter, .filter-div{
+  padding:calc(var(--spacing) * 2);
+  border-radius: 4px;
+}
+
+.filter-div:hover{
+  background-color: var(--taupe);
+}
+
+.search{
+  border-bottom: 1px solid var(--dimgray); 
+}
+
+.search:focus{
+  border-bottom: 2px solid var(--dimgray);
+  outline: none !important;
+}
+
+.small-count {
+  padding-left: calc(var(--spacing) * 3);
+  font-weight: bold;
+}
+
+/*********** CALENDARS ***********/
+.react-datepicker__month-container{
+  width: 100%;
+  margin: 0 auto;
+}
+
+#homeCalendar .react-datepicker{
+  background: transparent !important;
+  border-color: var(--darkcharcoal) !important;
+}
+
+.formCalendar .react-datepicker{
+  background: var(--darkcharcoal) !important;
+  border-color: var(--dimgray) !important;
+}
+
+
+#homeCalendar .react-datepicker__header{
+  background-color: var(--darkcharcoal);
+}
+
+.formCalendar .react-datepicker__header{
+  background-color: var(--darkcharcoal);
+}
+
+#homeCalendar .react-datepicker__day--selected{
+  background-color: var(--lightblue);
+  color: var(--lighttaupe) !important;
+}
+
+.formCalendar .react-datepicker__day--selected, .formCalendar .react-datepicker__day--selected:hover{
+  background-color: var(--lightblue) !important;
+  color: var(--lighttaupe) !important;
+  font-weight: bold;
+}
+
+#homeCalendar .react-datepicker__day--keyboard-selected, .formCalendar .react-datepicker__day--keyboard-selected{
+  background-color: var(--taupe) !important;
+}
+
+.formCalendar .react-datepicker__day--keyboard-selected{
+  color: var(--darkcharcoal) !important;
+}
+
+#homeCalendar .react-datepicker__day:hover{
+  background-color: var(--taupe) !important;
+}
+
+.formCalendar .react-datepicker__day:hover{
+  background-color: var(--taupe) !important;
+  color: var(--darkcharcoal)
+}
+
+#homeCalendar .react-datepicker__current-month, #homeCalendar .react-datepicker__day-name, .formCalendar .react-datepicker__current-month{
+  color: var(--taupe) !important;
+}
+.formCalendar .react-datepicker__day-name{
+  color: var(--taupe);
+  font-weight: bold;
+}
+
+#homeCalendar .react-datepicker__day{
+  color: var(--darkcharcoal)
+}
+
+.formCalendar .react-datepicker__day{
+  color: var(--dimgray)
+}
+
+.calendar-dd{
+  display: "flex";
+  color: var(--lighttaupe)
 }
 
 @media (prefers-color-scheme: dark) {
