@@ -8,15 +8,15 @@ export default function Tasks(props: any){
     const tasks = props.tasks;
 
     const paragraph = document.querySelector('p');
-    paragraph.setAttribute('data-taskid', 'custom value');
+    paragraph?.setAttribute('data-taskid', 'custom value');
 
-    const handleTaskDiv = (e) => {
+    const handleTaskDiv = (e:any) => {
         const id = e.target.getAttribute('data-taskid');
         props.handleTaskDiv(id);
         return id;
     }
 
-    const handleDeleteBtn = (e) => {
+    const handleDeleteBtn = (e: any) => {
         const id = e.target.getAttribute('data-taskid');
         props.handleDeleteBtn(id);
         return id;

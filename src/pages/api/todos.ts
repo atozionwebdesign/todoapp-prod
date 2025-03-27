@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
                 break;
             case "POST":
-                connection.query('INSERT INTO todoTbl(todo, start_date, end_date, details) values(?, ?, ?, ?)', [todo, new Date(start_date), new Date(end_date), details],(err, result) => {
+                connection.query('INSERT INTO todoTbl(todo, start_date, end_date, details) values(?, ?, ?, ?)', [todo, new Date(start_date), new Date(end_date), details],(err) => {
                     if(err){
                         console.error('Error executing query: ', err)
                         res.status(400).send('Error creating todo');
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 });
                 break;
             case "PUT":
-                connection.query('UPDATE todoTbl SET todo = ?, start_date = ?, end_date = ?, details = ? WHERE id = ?', [todo, new Date(start_date), new Date(end_date), details, id], (err, result) => {
+                connection.query('UPDATE todoTbl SET todo = ?, start_date = ?, end_date = ?, details = ? WHERE id = ?', [todo, new Date(start_date), new Date(end_date), details, id], (err) => {
                     if (err){
                         console.error('Error executing query: ', err);
                         res.status(400).send('Error updating todo');
@@ -53,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 })
                 break;
             case "DELETE":
-                connection.query('DELETE FROM todoTbl WHERE (ID =?)', [id], (err, result) => {
+                connection.query('DELETE FROM todoTbl WHERE (ID =?)', [id], (err) => {
                     if(err){
                         console.error('Error executing query: ', err );
                         res.status(400).send('Error deleting todo');

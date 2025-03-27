@@ -1,4 +1,4 @@
-export default function Intro(props:any){
+export default function About(){
 
     return(
         <div>

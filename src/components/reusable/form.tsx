@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from "./button";
 import styles from "@/app/page.module.css";
 

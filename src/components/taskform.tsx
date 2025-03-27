@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState} from "react";
 import { updateTask, createTask } from "@/app/services/todos";
 import styles from "../app/page.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Form from "./reusable/Form";
+import Form from "./reusable/form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 
@@ -43,7 +44,7 @@ export default function TaskForm(props:any){
       "Dec",
     ];
     
-    function range(last) {
+    function range(last: number) {
         const result = [];
         const date = new Date();
         const end = date.getFullYear();
@@ -69,6 +70,8 @@ export default function TaskForm(props:any){
         } else{
             createTask(updatedTodo)
         }
+
+       
     }
 
     return (
@@ -102,7 +105,7 @@ export default function TaskForm(props:any){
                                         </button>
                                         <select
                                             value={date.getFullYear()}
-                                            onChange={({ target: { value } }) => changeYear(value)}
+                                            onChange={({ target: { value } }) => changeYear(parseInt(value))}
                                             className="mr-2"
                                         >
                                             {years.map((option) => (
@@ -131,9 +134,9 @@ export default function TaskForm(props:any){
                                         </div>
                                     )}
                                     selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
+                                    onChange={(date) => {if(date) setStartDate(date)}}
                                     className={`${styles.formInput} ${styles.calendarInput} text-center`}
-                                    value={startDate}
+                                    value={String(startDate.toLocaleDateString())}
                                 />
                             </div>
                             <div className="col-span-1 justify-center items-center flex">
@@ -159,7 +162,7 @@ export default function TaskForm(props:any){
                                         </button>
                                         <select
                                             value={date.getFullYear()}
-                                            onChange={({ target: { value } }) => changeYear(value)}
+                                            onChange={({ target: { value } }) => changeYear(parseInt(value))}
                                             className="mr-2"
                                         >
                                             {years.map((option) => (
@@ -188,9 +191,9 @@ export default function TaskForm(props:any){
                                         </div>
                                     )}
                                     selected={endDate}
-                                    onChange={(date) => setEndDate(date)}
+                                    onChange={(date) => {if(date) setEndDate(date)}}
                                     className={`${styles.formInput} ${styles.calendarInput} text-center`}
-                                    value={endDate}
+                                    value={String(endDate.toLocaleDateString())}
                                 />
                             </div> 
                         </div>
