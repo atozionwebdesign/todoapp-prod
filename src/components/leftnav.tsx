@@ -9,6 +9,8 @@ export default function LeftNav(props: any){
   
   const count = props.count;
   const filter = props.filter;
+  const username = props.username.toUpperCase();
+  const initial = props.initial;
 
   const handleFilters = (e: any) => { 
     props.setFilter(e.target.id);
@@ -18,21 +20,19 @@ export default function LeftNav(props: any){
     <div style={{color: 'var(--darkcharcoal)'}} >
       <div className="flex w-full mb-2">
         <div className="flex-none content-center">
-          <div className={styles.logo}>
+          <div className={`${styles.logo} flex items-center justify-center`}>
+            <p className="xlarge font-bold" style={{color:'var(--lightblue)'}}>{initial}</p>
           </div>
         </div>
         <div className="grow pl-1 content-center">
-          <p className="font-bold large">Username</p>
-          <p>Acct message</p>
+          <p className="font-bold large" >{username}</p>
+          <p>MY TODO LIST</p>
         </div>
       </div>
       <div onClick={handleFilters} id="about" className="mb-2 filter-div clickable font-bold">
         LEARN ABOUT THE APP
       </div>
-      {/* <Form action="/search" className="mb-3 mt-3 grow flex">
-        <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-        <input name="query" className="grow search" placeholder="Search"></input>
-      </Form> */}
+      
       <div className="flex flex-row md:flex-col">
         <div onClick={props.handleNewBtn} id="new" className="filter-div clickable">
           <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>New Task

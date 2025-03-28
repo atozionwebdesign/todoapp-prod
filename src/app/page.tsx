@@ -24,8 +24,9 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [task, setTask] = useState({});
   const [formType, setFormType] = useState('update');
-  // const [calendarDate, setCalendarDate] = useState(new Date());
-  
+  const [name, setName] = useState<string>('');
+  const [initial, setInitial] = useState('U');
+  const [nameCaptured, setNameCaptured] = useState(false);
 
   useEffect(() => {
     getTasks().then(res => {
@@ -36,12 +37,18 @@ export default function Home() {
     });
   },[])
 
+  function handleNameSave(){
+    if (name.length > 0){
+    setInitial(name.substring(0,1))
+    setNameCaptured(true);
+    }
+  }
+
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    
     setIsModalOpen(false);
     setFormType('update');
   };
@@ -95,12 +102,19 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <div className="md:flex min-h-screen">
+        <div className={"flex flex-col items-center justify-center w-screen min-h-screen " + (nameCaptured ? 'hidden': '')}>
+          <h1 style={{color:'var(--darkcharcoal)', fontWeight:'bold'}}>Hi, What is your name?</h1>
+          <div>
+            <form className="flex flex-col"><input name="usernameInput" value={name} onChange={(e) => {setName(e.target.value)}} className={`input- mb-3 ${styles.formInput}`}></input><button type="button" onClick={handleNameSave} className={`${styles.primaryBtn} clickable`}>SAVE</button></form>
+          </div>
+        </div>
+        <div className={(!nameCaptured ? 'hidden': 'md:flex min-h-screen')}>
           <div className="p-2 small">
-            <LeftNav filter = {fV} setFilter = {setFilter} count={count} handleNewBtn = {handleNewBtn}  />
+            <LeftNav filter = {fV} setFilter = {setFilter} count={count} handleNewBtn = {handleNewBtn} username={name} initial = {initial}/>
           </div>
           <div className="grow p-5 min-h-screen" style={{backgroundColor:'var(--charcoal)', color: 'var(--lighttaupe)'}}>
-            <h1 className="font-bold text-xl justify-self-center">Hello, Name</h1>
+            <p className="justify-self-center" style={{color:'var(--taupe)'}}>NOTE: This is a LIVE application. Feel free to test all CRUD functionality. <strong>ALL taskings are stored and visible to all until you delete them!</strong></p>
+            <h1 className="font-bold text-xl justify-self-center">Hello, {name}</h1>
             
               <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {
@@ -116,19 +130,6 @@ export default function Home() {
                 : <p>Loading....</p>
             }
           </div>
-          {/* <div className="md:w-65 p-2 small justify-items-center">
-            <div className="flex items-center">
-              <div id="homeCalendar" className="mx-auto">
-                <DatePicker
-                  selected={calendarDate}
-                  onChange={(date) => {if(date) setCalendarDate(date)}}
-                  inline
-                />
-              </div>
-            </div>
-            
-            
-          </div> */}
         </div>    
       </main>
     </div>
