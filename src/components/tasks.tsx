@@ -24,16 +24,16 @@ export default function Tasks(props: any){
 
     return (
         <div>
-            <p className="large text-center font-bold" style={{color:'var(--darkcharcoal)'}}>
+            <p className="large text-center mb-5" style={{color:'var(--darkcharcoal)'}}>
             {today}</p>
             <p className='xlarge' style={{color:'var(--darkcharcoal)', fontWeight: 'bold'}}>TASKS</p>
             <p style={{color:'var(--darkcharcoal)'}}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>Click on a task below to edit it</p>
-            <div className={styles.tasksContainer}>
+            <div className={`${styles.tasksContainer}`}>
                 {
                     tasks.map((task:any) => {
                         return (
                             <div key={task.id} className={`${styles.taskDiv} relative flex w-full`} >
-                                <div onClick={handleTaskDiv} className="grow clickable">
+                                <div onClick={handleTaskDiv} className="grow clickable" data-taskid = {task.id}>
                                     <p data-taskid = {task.id} className="large font-bold">{task.todo}</p>
                                     <p data-taskid = {task.id} className="small" style={{color:"var(--taupe)"}}>{task.start_date}</p>
                                     <p data-taskid = {task.id} className="small mt-2">{task.details}</p>

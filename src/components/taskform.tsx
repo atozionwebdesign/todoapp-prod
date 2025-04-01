@@ -90,6 +90,7 @@ export default function TaskForm(props:any){
                         <div className="relative z-0 w-full mb-10 group gap-2 justify-items-center grid grid-cols-11 h-fit">
                             <div className="col-span-5 px-2 formCalendar">
                                 <DatePicker
+                                    popperPlacement="top-end"
                                     renderCustomHeader={({
                                         date,
                                         changeYear,
@@ -139,14 +140,13 @@ export default function TaskForm(props:any){
                                     value={String(startDate.toLocaleDateString())}
                                 />
                             </div>
-                            <div className="col-span-1 justify-center items-center flex">
-                                <p style={{color:'var(--dimgray)'}} >
-                                    <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon>
-                                </p>
-                                
+                            <div className="col-span-1 justify-center items-center flex " style={{color:'var(--dimgray)'}}>
+                               <FontAwesomeIcon icon={faArrowRightLong} className="self-center" id="dateArrow"></FontAwesomeIcon>
                             </div>  
                             <div className="col-span-5 px-2 formCalendar">
                                 <DatePicker
+                                    popperPlacement="top-start"
+                                    
                                     renderCustomHeader={({
                                         date,
                                         changeYear,
@@ -171,7 +171,6 @@ export default function TaskForm(props:any){
                                             </option>
                                             ))}
                                         </select>
-
                                         <select
                                             value={months[date.getMonth()]}
                                             onChange={({ target: { value } }) =>

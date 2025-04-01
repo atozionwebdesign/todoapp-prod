@@ -8,7 +8,7 @@ export default function Form(props: any){
         <form className="w-full mx-auto h-full ">
             <div className="w-full h-full">            
                 {props.children}
-                <div className="absolute right-3 bottom-3">
+                <div className="absolute right-3 bottom-3 z-1">
                     <Button onClick={props.onCancel} type='button' className={`${styles.secondaryBtn}`}>CANCEL</Button>
                     <Button onClick={props.onSubmit} type='submit' className={`${styles.primaryBtn}`}>SAVE</Button>
                 </div>

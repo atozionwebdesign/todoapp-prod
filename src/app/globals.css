@@ -51,11 +51,11 @@ h2{
 }
 
 p{
-  font-size: 0.875em;
+  font-size: 1em;
 }
 
 .large{
-  font-size: 1em !important;
+  font-size: 1.25em !important;
 }
 
 .xlarge{
@@ -63,7 +63,7 @@ p{
 }
 
 .small {
-  font-size: 0.75em;
+  font-size: 0.875em;
 }
 
 /*********** IMAGES ***********/
@@ -183,8 +183,12 @@ svg {
   color: var(--lighttaupe)
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+#dateArrow.svg-inline--fa{
+  margin-right:0 !important;
+}
+
+/*********** FOOTER ***********/
+.footer a, .footer .svg-inline--fa{
+  color: var(--lightblue);
+  font-weight: bold;
 }
