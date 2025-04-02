@@ -1,28 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { formatDate } from "../utils/helper";
 
+let baseURL: string | undefined = '';
 
-const baseURL = process.env.NEXT_PUBLIC_URL;
+if(process.env.NODE_ENV == "development") {
+  baseURL = process.env.NEXT_PUBLIC_URL;
+}
 
 export async function getTasks(){
-    const res = await fetch(baseURL + '/api/todos', {method: 'GET'});
-    const tasks = await res.json();
-    const options: Intl.DateTimeFormatOptions = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric'};
-      tasks.map((task:any) => {
-          task.start_date = new Date(task.start_date).toLocaleDateString('en-US', options);
-          task.end_date = new Date(task.end_date).toLocaleDateString('en-US', options);
-      })
-    return tasks;
+  const res = await fetch(baseURL + '/api/todos', {method: 'GET'});
+  const tasks = await res.json();
+  tasks.map((task:any) => {
+    task.start_date = formatDate(task.start_date);
+    task.end_date = formatDate(task.end_date);
+  })
+  return tasks;
 }
 
 export async function getTaskById(id:number){
-    const res = await fetch(baseURL + '/api/todos?id=' + id, {method: 'GET'});
-    const task = await res.json();
-    const options: Intl.DateTimeFormatOptions = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric'};
-      task.map((task:any) => {
-          task.start_date = new Date(task.start_date).toLocaleDateString('en-US', options);
-          task.end_date = new Date(task.end_date).toLocaleDateString('en-US', options);
-      })
-    return task;
+  const res = await fetch(baseURL + '/api/todos?id=' + id, {method: 'GET'});
+  const task = await res.json();
+  task.map((task:any) => {
+    task.start_date = formatDate(task.start_date);
+    task.end_date = formatDate(task.end_date);
+  })
+  return task;
 }
 
   export async function updateTask(id:number, data:any){
@@ -43,6 +45,7 @@ export async function getTaskById(id:number){
   }
 
   export async function createTask(data:any){
+   
     const res = await fetch(baseURL + '/api/todos?', {
       method: 'POST',
       headers : { 
@@ -61,7 +64,6 @@ export async function getTaskById(id:number){
 
   export async function deleteTask(id:number){
     const res = await fetch(baseURL + '/api/todos?id=' + id, {method: 'DELETE'});
-    
     if (!res.ok) {
       console.error('Failed to delete item', res);
       return;

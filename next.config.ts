@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: 'atozionwebdesign-portfolio-prod1.s3.us-east-1.amazonaws.com'
+    }]
+    
+  }  
 };
 
 export default nextConfig;

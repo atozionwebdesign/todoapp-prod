@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "A Tasking App",
   description: "A Tasking App created using Nextjs",
+  icons: {
+    icon: '/favicon-16x16.png'
+  }
 };
 
 export default function RootLayout({

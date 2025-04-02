@@ -25,7 +25,7 @@ export default function Home() {
           <h1 style={{color:'var(--darkcharcoal)', fontWeight:'bold'}}>Hi, What is your name?</h1>
           <div>
             <form className="flex flex-col">
-              <input name="usernameInput" value={name} onChange={(e) => {setName(e.target.value)}} className={`input- mb-3 ${styles.formInput}`}></input>
+              <input name="usernameInput" value={name} onChange={(e) => {setName(e.target.value)}} className={`input- mb-3 ${styles.formInput}`} style={{color:'var(--lighttaupe)'}}></input>
               <button type="button" onClick={handleNameSave} className={`${styles.primaryBtn} clickable`}>SAVE</button>  
             </form>
           </div>

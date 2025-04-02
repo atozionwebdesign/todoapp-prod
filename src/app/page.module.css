@@ -46,6 +46,7 @@
 .primaryBtn{
   background-color: var(--lightblue);
   width: calc(var(--spacing) * 50);
+  color: var(--lighttaupe);
 }
 
 .secondaryBtn{

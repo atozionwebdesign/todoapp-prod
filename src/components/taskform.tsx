@@ -57,21 +57,19 @@ export default function TaskForm(props:any){
     const years = range(2020);
 
     function handleSubmit(){
-        
+    
         const updatedTodo = {
             todo: title,
-            start_date: startDate,
-            end_date: endDate,
+            start_date: startDate.toLocaleDateString(),
+            end_date: endDate.toLocaleDateString(),
             details: details
         };
-
+        
         if(formType == 'update'){
             updateTask(id, updatedTodo)
         } else{
             createTask(updatedTodo)
-        }
-
-       
+        }       
     }
 
     return (
@@ -90,6 +88,7 @@ export default function TaskForm(props:any){
                         <div className="relative z-0 w-full mb-10 group gap-2 justify-items-center grid grid-cols-11 h-fit">
                             <div className="col-span-5 px-2 formCalendar">
                                 <DatePicker
+                                
                                     popperPlacement="top-end"
                                     renderCustomHeader={({
                                         date,
@@ -138,6 +137,7 @@ export default function TaskForm(props:any){
                                     onChange={(date) => {if(date) setStartDate(date)}}
                                     className={`${styles.formInput} ${styles.calendarInput} text-center`}
                                     value={String(startDate.toLocaleDateString())}
+                                    
                                 />
                             </div>
                             <div className="col-span-1 justify-center items-center flex " style={{color:'var(--dimgray)'}}>

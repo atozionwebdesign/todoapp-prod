@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         }
                     });
                 } else {
-                    connection.query('SELECT * FROM todoTbl ORDER BY start_date', [id], (err, results) => {
+                    connection.query('SELECT * FROM todoTbl ORDER BY STR_TO_DATE(start_date,"%c/%e/%Y")', [id], (err, results) => {
                         if(results){
                             res.status(200).json(results);
                         } else {
@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
                 break;
             case "POST":
-                connection.query('INSERT INTO todoTbl(todo, start_date, end_date, details) values(?, ?, ?, ?)', [todo, new Date(start_date), new Date(end_date), details],(err) => {
+                connection.query('INSERT INTO todoTbl(todo, start_date, end_date, details) values(?, ?, ?, ?)', [todo, start_date, end_date, details],(err) => {
                     if(err){
                         console.error('Error executing query: ', err)
                         res.status(400).send('Error creating todo');
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 });
                 break;
             case "PUT":
-                connection.query('UPDATE todoTbl SET todo = ?, start_date = ?, end_date = ?, details = ? WHERE id = ?', [todo, new Date(start_date), new Date(end_date), details, id], (err) => {
+                connection.query('UPDATE todoTbl SET todo = ?, start_date = ?, end_date = ?, details = ? WHERE id = ?', [todo, start_date, end_date, details, id], (err) => {
                     if (err){
                         console.error('Error executing query: ', err);
                         res.status(400).send('Error updating todo');
